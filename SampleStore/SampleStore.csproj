@@ -432,7 +432,7 @@
     <Content Include="Scripts\app\lib\angular\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\app\lib\angular\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\app\lib\angular\version.txt" />
-    <Content Include="Scripts\app\partials\partial1.html" />
+    <Content Include="Scripts\app\partials\products.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
