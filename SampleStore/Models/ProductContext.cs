@@ -6,8 +6,11 @@ using System.Data.Entity;
 
 namespace SampleStore.Models
 {
-    public class StoreContext
+    public class StoreContext : DbContext
     {
-      
+        public StoreContext() : base("name=StoreContext")
+        {
+        }
+        public DbSet<Product> Products { get; set; }
     }
 }
