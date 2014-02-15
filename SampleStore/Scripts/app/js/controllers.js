@@ -4,7 +4,9 @@
 
 angular.module('myApp.controllers', []).
   controller('ProductsCtrl', ['$scope', 'Products', function($scope, Products) {
-      $scope.products = Products.getProducts();
+      Products.getProducts().then(function (products) {
+          $scope.products = products;
+      });;
   }])
   .controller('MyCtrl2', [function() {
 
