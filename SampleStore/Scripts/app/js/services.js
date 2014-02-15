@@ -10,7 +10,12 @@ angular.module('myApp.services', ['ngResource'])
         var resource = $resource(uri);
         return {
             getProducts: function () {
-                return resource.query();
+                var deferred = $q.defer();
+                var result = resource.query(function () {
+                    deferred.resolve(result);
+                });
+
+                return deferred.promise;
             }
         }
     })
