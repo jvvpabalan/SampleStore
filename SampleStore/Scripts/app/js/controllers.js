@@ -8,6 +8,3 @@ angular.module('myApp.controllers', []).
           $scope.products = products;
       });;
   }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
