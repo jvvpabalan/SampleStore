@@ -1,12 +1,12 @@
 ﻿<h3>Product Store</h3>
-
+<input type="text" ng-model="searchTerm" placeholder="Search by name" class="form-control"/>
 <table class="table table-hover">
         <tr>
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
         </tr>
-    <tr ng-repeat="product in products">
+    <tr ng-repeat="product in products | filter:searchTerm">
         <td>{{product.Name}}</td>
         <td>{{product.Category}}</td>
         <td>{{product.Price}}</td>
