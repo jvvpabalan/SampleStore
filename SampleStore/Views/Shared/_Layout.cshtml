@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -36,6 +36,13 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/app/lib/angular/angular.min.js"></script>
+    <script src="~/Scripts/app/lib/angular/angular-route.min.js"></script>
+    <script src="~/scripts/app/js/app.js"></script>
+    <script src="~/scripts/app/js/directives.js"></script>
+    <script src="~/scripts/app/js/controllers.js"></script>
+    <script src="~/scripts/app/js/filters.js"></script>
+    <script src="~/scripts/app/js/services.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

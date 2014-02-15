@@ -9,6 +9,7 @@ namespace SampleStore.Models
     {
         private StoreContext context = new StoreContext();
 
+
         public IEnumerable<Product> GetAll()
         {
             return context.Products;
