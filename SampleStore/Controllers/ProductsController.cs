@@ -33,7 +33,7 @@ namespace SampleStore.Controllers
                 p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase));
         }
 
-  
+        
         public HttpResponseMessage PostProduct(Product item)
         {
             item = repository.Add(item);
