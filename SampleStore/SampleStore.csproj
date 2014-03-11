@@ -443,6 +443,7 @@
     <Content Include="Scripts\app\lib\angular\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\app\lib\angular\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\app\lib\angular\version.txt" />
+    <Content Include="Scripts\app\partials\addProduct.html" />
     <Content Include="Scripts\app\partials\products.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -476,6 +477,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

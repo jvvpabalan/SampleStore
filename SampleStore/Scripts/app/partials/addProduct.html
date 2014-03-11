@@ -1,0 +1,52 @@
+﻿<div class="modal-header">
+    <h3>New </h3>
+</div>
+<div class="modal-body">
+
+    <form name="productForm" id="productForm" ng-init="product = { }">
+        <div class="row form-group">
+
+
+            <div class="col-xs-3">
+                <label for="name">
+                    Name:
+                </label>
+            </div>
+            <div >
+                <input type=" text" required name="productName" ng-model="product.name" class="form-control" />
+
+            </div>
+        </div>
+        <div class="row form-group">
+
+            <div class="col-xs-3">
+                <label for="category">
+                    Category:
+                </label>
+            </div>
+            <div>
+                <input type="text" name="category" ng-model="product.category" class="form-control" required />
+
+            </div>
+        </div>
+        <div class="row form-group">
+
+            <div class="col-xs-3">
+                <label for="Price">
+                    Price:
+                </label>
+            </div>
+
+            <div>
+                <input type="number" name="price" ng-model="product.price" class="form-control" required />
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-click="ok(product, productForm)">Save</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
