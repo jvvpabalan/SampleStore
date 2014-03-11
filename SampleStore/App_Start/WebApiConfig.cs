@@ -14,14 +14,11 @@ namespace SampleStore
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var kernel = new StandardKernel(); Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetAll()).Returns(new List<Product> {
-new Product { Name = "Football", Price = 25 },
-new Product { Name = "Surf board", Price = 179 },
-new Product { Name = "Running shoes", Price = 95 }
-}.AsQueryable());
-            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            var kernel = new StandardKernel();
+            kernel.Bind<IProductRepository>().To<ProductRepository>();
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectControllerFactory(kernel);
+
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -31,5 +28,6 @@ new Product { Name = "Running shoes", Price = 95 }
                 defaults: new { id = RouteParameter.Optional }
             );
         }
+
     }
 }
