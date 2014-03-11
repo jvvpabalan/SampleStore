@@ -152,6 +152,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastracture\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastracture\NinjectScope.cs" />
     <Compile Include="Migrations\201402150611435_Initial.cs" />
     <Compile Include="Migrations\201402150611435_Initial.Designer.cs">
       <DependentUpon>201402150611435_Initial.cs</DependentUpon>

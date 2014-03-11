@@ -5,36 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http.Controllers;
+using System.Web.Http.Dependencies;
+
+
 
 namespace SampleStore.Infrastracture
 {
-    public class NinjectControllerFactory : DefaultControllerFactory
+    public class NinjectControllerFactory : NinjectScope,IDependencyResolver
     {
-        private IKernel ninjectKernel;
+        private IKernel _kernel;
 
-
-        public NinjectControllerFactory()
+        public NinjectControllerFactory(IKernel kernel)
+            :base(kernel)
         {
-            ninjectKernel = new StandardKernel();
-            AddBindings();
+            _kernel = kernel;
         }
 
-        protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
+        public IDependencyScope BeginScope()
         {
-            return controllerType == null ? null : (IController)ninjectKernel.Get(controllerType);
+            return new NinjectScope(_kernel.BeginBlock());
         }
 
-        private void AddBindings()
-        {
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetAll()).Returns(new List<Product> {
-                new Product { Name = "Second Son", Price = 25 },
-                new Product { Name = "First Son", Price = 35},
-                new Product { Name = "Third SOn", Price = 45}
-            }.AsEnumerable());
-            ninjectKernel.Bind<IProductRepository>().ToConstant(mock.Object);
-        }
+
 
     }
 }
