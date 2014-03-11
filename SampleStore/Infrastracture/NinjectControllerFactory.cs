@@ -1,4 +1,6 @@
-﻿using Ninject;
+﻿using Moq;
+using Ninject;
+using SampleStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,13 @@ namespace SampleStore.Infrastracture
 
         private void AddBindings()
         {
-
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.GetAll()).Returns(new List<Product> {
+                new Product { Name = "Second Son", Price = 25 },
+                new Product { Name = "First Son", Price = 35},
+                new Product { Name = "Third SOn", Price = 45}
+            }.AsEnumerable());
+            ninjectKernel.Bind<IProductRepository>().ToConstant(mock.Object);
         }
 
     }
