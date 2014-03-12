@@ -47,7 +47,7 @@ angular.module('myApp.services', ['ngResource'])
                 return deferred.promise;
             },
 
-            removeProduct: function (product) {
+            removeProduct: function (item) {
                 var deferred = $q.defer();
                 resource.delete(item, function (product) {
                     deferred.resolve(product);

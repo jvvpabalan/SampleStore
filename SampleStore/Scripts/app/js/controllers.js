@@ -56,7 +56,13 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
                   }
               }
 
-          })
+          });
+
+          modalInstance.result.then(function (item) {
+              $scope.products.splice(item, 1);
+
+          });
+
       }
   }])
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
@@ -67,9 +73,6 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             var newProd = Products.addProduct(product);
             $modalInstance.close(newProd);
         }
-        modalInstance.result.then(function (item) {
-            $scope.products.push(item);
-        });
 
     }
     $scope.cancel = function () {
@@ -79,11 +82,12 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 .controller("RemoveProductCtrl", ["$scope", "$modalInstance", "Products", "productToRemove", "productIndex",
     function ($scope, $modalInstance, Products, productToRemove, productIndex) {
         $scope.product = productToRemove;
-        $scope.ok = function (product) {
+        console.log(productIndex);
+        $scope.delete = function (product) {
             Products.removeProduct({ Id: product.Id });
             $modalInstance.close(productIndex);
         }
-        scope.cancel = function () {
+        $scope.cancel = function () {
             $modalInstance.close();
         }
 
