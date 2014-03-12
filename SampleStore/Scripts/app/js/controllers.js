@@ -80,7 +80,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
     function ($scope, $modalInstance, Products, productToRemove, productIndex) {
         $scope.product = productToRemove;
         $scope.ok = function (product) {
-            Products.remove({ Id: product.Id });
+            Products.removeProduct({ Id: product.Id });
             $modalInstance.close(productIndex);
         }
         scope.cancel = function () {
