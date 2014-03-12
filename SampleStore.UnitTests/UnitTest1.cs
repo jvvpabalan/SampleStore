@@ -46,6 +46,8 @@ namespace SampleStore.UnitTests
             var config = new HttpConfiguration();
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/api/products/1");
             var route = config.Routes.MapHttpRoute("DefaultApi", "api/products/{id}");
+            mock.Setup(m => m.Add(It.IsAny<Product>())).Returns<Product>(m => new Product());
+
             ProductsController controller = new ProductsController(mock.Object);
             controller.Request = request;
             controller.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = config;
