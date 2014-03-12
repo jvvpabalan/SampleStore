@@ -11,12 +11,15 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           $scope.products = products;
       });;
 
+
       $scope.addProduct = function () {
+          //open bootstrap modal then pass controller and template
           var modalInstance = $modal.open({
               templateUrl: '/Scripts/app/partials/addProduct.html',
               controller: 'AddProductCtrl'
           });
 
+          //add product to products model after closing the modal
           modalInstance.result.then(function (item) {
               if (item !== undefined) {
                   console.log(item);
@@ -25,6 +28,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           })
       }
 
+      //Show edit product form
       $scope.editProduct = function (product) {
           $scope.productToEdit = product;
       }
@@ -35,6 +39,24 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
               var newProduct = Products.update(product);
               $scope.productToEdit = null;
           }
+      }
+
+
+      $scope.deleteProduct = function (product, index) {
+          var modalInstance = $modal.open({
+              templateUrl: '/Scripts/app/partials/deleteProduct.html',
+              controller: 'RemoveProductCtrl',
+              resolve: {
+                  productToRemove: function () {
+                      return product;
+                  },
+
+                  productIndex: function () {
+                      return index;
+                  }
+              }
+
+          })
       }
   }])
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
@@ -51,4 +73,9 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
     $scope.cancel = function () {
         $modalInstance.close();
     }
+}])
+.controller("RemoveProductCtrl", ["$scope", "$modalInstance", "Product", "productToRemove", "productIndex",
+    function ($scope, $modalInstance, Product, productToRemove, productIndex) {
+
+
 }]);
