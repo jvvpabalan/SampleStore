@@ -11,6 +11,8 @@
         <td>{{product.Name}}</td>
         <td>{{product.Category}}</td>
         <td>{{product.Price}}</td>
-        <td><a href="#" class="btn btn-info">Edit</a></td>
+        <td><a href="" ng-click="editProduct(product)" class="btn btn-info">Edit</a></td>
     </tr>
 </table>
+
+<div ng-include src="editUrl"></div>

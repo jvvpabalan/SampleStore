@@ -4,6 +4,9 @@
 
 angular.module('myApp.controllers', ['ui.bootstrap']).
   controller('ProductsCtrl', ['$scope', "$modal", 'Products', function ($scope, $modal, Products) {
+
+      $scope.productToEdit = null;
+      $scope.editUrl = "/Scripts/app/partials/editProduct.html"
       Products.getProducts().then(function (products) {
           $scope.products = products;
       });;
@@ -20,6 +23,10 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
                   $scope.products.push(item);
               }
           })
+      }
+
+      $scope.editProduct = function (product) {
+          $scope.productToEdit = product;
       }
   }])
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {

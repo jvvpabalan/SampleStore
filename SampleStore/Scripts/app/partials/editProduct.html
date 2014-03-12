@@ -1,0 +1,44 @@
+﻿<div ng-show="productToEdit">
+    <h3>Edit Product</h3>
+    <form name="productForm" id="productForm">
+        <div class="row form-group">
+
+
+            <div class="col-xs-3">
+                <label for="name">
+                    Name:
+                </label>
+            </div>
+            <div class="col-xs-6">
+                <input type="text" name="name" ng-model="productToEdit.Name" class="form-control" required />
+
+            </div>
+        </div>
+        <div class="row form-group">
+
+            <div class="col-xs-3">
+                <label for="category">
+                    Category:
+                </label>
+            </div>
+            <div class="col-xs-6">
+                <input type="text" name="category" ng-model="productToEdit.Category" class="form-control" />
+
+            </div>
+        </div>
+        <div class="row form-group">
+
+            <div class="col-xs-3">
+                <label for="Price">
+                    Price:
+                </label>
+            </div>
+            <div class="col-xs-6">
+                <input type="number" name="price" ng-model="productToEdit.Price" class="form-control" />
+
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" ng-click="saveEdit(productToEdit,productForm)" value="Save" />
+        <button class="btn btn-warning" ng-click="cancelEdit()">Cancel</button>
+    </form>
+</div>
