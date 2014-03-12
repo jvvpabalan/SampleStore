@@ -74,8 +74,8 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         $modalInstance.close();
     }
 }])
-.controller("RemoveProductCtrl", ["$scope", "$modalInstance", "Product", "productToRemove", "productIndex",
-    function ($scope, $modalInstance, Product, productToRemove, productIndex) {
+.controller("RemoveProductCtrl", ["$scope", "$modalInstance", "Products", "productToRemove", "productIndex",
+    function ($scope, $modalInstance, Products, productToRemove, productIndex) {
 
 
 }]);
