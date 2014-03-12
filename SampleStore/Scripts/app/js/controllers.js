@@ -41,6 +41,10 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           }
       }
 
+      $scope.cancelEdit = function () {
+          $scope.productToRemove = null;
+      }
+
 
       $scope.deleteProduct = function (product, index) {
           var modalInstance = $modal.open({
