@@ -11,7 +11,7 @@
         <td>{{product.Name}}</td>
         <td>{{product.Category}}</td>
         <td>{{product.Price}}</td>
-        <td><a href="" ng-click="editProduct(product)" class="btn btn-info">Edit</a> <a href="" class="btn btn-danger"  >Delete</a></td>
+        <td><a href="" ng-click="editProduct(product)" class="btn btn-info">Edit</a> <a href="" class="btn btn-danger" ng-click="deleteProduct(product, $index)" >Delete</a></td>
     </tr>
 </table>
 
