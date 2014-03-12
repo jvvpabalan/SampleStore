@@ -28,6 +28,14 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       $scope.editProduct = function (product) {
           $scope.productToEdit = product;
       }
+
+      $scope.saveEdit = function (product, form) {
+          //Update form if valid
+          if (form.$valid) {
+              var newProduct = Products.update(product);
+              $scope.productToEdit = null;
+          }
+      }
   }])
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
     $scope.save = function (product, form) {
