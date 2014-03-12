@@ -15,7 +15,10 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           });
 
           modalInstance.result.then(function (item) {
-              $scope.products.push(item);
+              if (item !== undefined) {
+                  console.log(item);
+                  $scope.products.push(item);
+              }
           })
       }
   }])
@@ -31,6 +34,6 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 
     }
     $scope.cancel = function () {
-        $modalInstance.close("hide");
+        $modalInstance.close();
     }
 }]);
