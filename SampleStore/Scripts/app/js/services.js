@@ -12,7 +12,8 @@ angular.module('myApp.services', ['ngResource'])
             {
                 "query": { method: 'GET', isArray: true },
                 "save": { method: "POST" },
-                "update": { method: 'PUT' }
+                "update": { method: 'PUT' },
+                'delete': { method: 'DELETE'}
             });
         return {
             getProducts: function () {
@@ -38,6 +39,17 @@ angular.module('myApp.services', ['ngResource'])
             update: function (item) {
                 var deferred = $q.defer();
                 resource.update(item, function (product) {
+                    deferred.resolve(product);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+
+                return deferred.promise;
+            },
+
+            removeProduct: function (product) {
+                var deferred = $q.defer();
+                resource.delete(item, function (product) {
                     deferred.resolve(product);
                 }, function (response) {
                     deferred.reject(response);
