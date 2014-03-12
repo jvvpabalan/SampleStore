@@ -20,12 +20,12 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       }
   }])
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
-    $scope.ok = function (product, form) {
+    $scope.save = function (product, form) {
         $scope.submitted = true;
         console.log(form);
         if (form.$valid) {
-            var newProd = Products.save(product);
-            $modalInstance.close(product);
+            var newProd = Products.addProduct(product);
+            $modalInstance.close(newProd);
         }
 
 
