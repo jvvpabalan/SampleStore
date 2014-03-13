@@ -15,6 +15,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       });;
 
       $scope.pageSize = 3;
+      $scope.take = 3;
       $scope.getPageCount = function () {
           //make sure product is populated before using it
           if ($scope.products != undefined) {
@@ -23,6 +24,14 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           }
 
       }
+      $scope.pageSkip = 0;
+      $scope.goToPage = function (pageNum) {
+          
+          $scope.take = pageNum * 3;
+          $scope.pageSkip = (pageNum * 3) - 3;
+ 
+      }
+
       $scope.addProduct = function () {
           //open bootstrap modal then pass controller and template
           var modalInstance = $modal.open({
@@ -74,8 +83,9 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           });
 
           modalInstance.result.then(function (item) {
-              $scope.products.splice(item, 1);
-
+              if (item !== undefined) {
+                  $scope.products.splice(item, 1);
+              }
           });
 
       }
@@ -97,7 +107,6 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 .controller("RemoveProductCtrl", ["$scope", "$modalInstance", "Products", "productToRemove", "productIndex",
     function ($scope, $modalInstance, Products, productToRemove, productIndex) {
         $scope.product = productToRemove;
-        console.log(productIndex);
         $scope.delete = function (product) {
             Products.removeProduct({ Id: product.Id });
             $modalInstance.close(productIndex);
