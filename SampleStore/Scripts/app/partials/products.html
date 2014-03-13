@@ -7,7 +7,7 @@
             <th>Price</th>
             <th></th>
         </tr>
-    <tr ng-repeat="product in products | filter:searchTerm">
+    <tr ng-repeat="product in products | filter:searchTerm | limitTo: pageSize" >
         <td>{{product.Name}}</td>
         <td>{{product.Category}}</td>
         <td>{{product.Price}}</td>
@@ -21,6 +21,6 @@
 <div>
 
     <ul class="pagination">
-        <li><a href="#">1</a></li>
+        <li ng-repeat="i in getPageCount() track by $index"><a href="#">{{$index+1}}</a></li>
     </ul>
 </div>

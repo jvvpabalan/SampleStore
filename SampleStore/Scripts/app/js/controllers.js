@@ -5,13 +5,24 @@
 angular.module('myApp.controllers', ['ui.bootstrap']).
   controller('ProductsCtrl', ['$scope', "$modal", 'Products', function ($scope, $modal, Products) {
 
+
+
+
       $scope.productToEdit = null;
       $scope.editUrl = "/Scripts/app/partials/editProduct.html"
       Products.getProducts().then(function (products) {
           $scope.products = products;
       });;
 
+      $scope.pageSize = 3;
+      $scope.getPageCount = function () {
+          //make sure product is populated before using it
+          if ($scope.products != undefined) {
+              var pageCount = Math.ceil($scope.products.length / $scope.pageSize);
+              return new Array(pageCount);
+          }
 
+      }
       $scope.addProduct = function () {
           //open bootstrap modal then pass controller and template
           var modalInstance = $modal.open({
@@ -72,7 +83,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
     $scope.save = function (product, form) {
         $scope.submitted = true;
-     
+
         if (form.$valid) {
             var newProd = Products.addProduct(product);
             $modalInstance.close(newProd);
@@ -95,4 +106,4 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             $modalInstance.close();
         }
 
-}]);
+    }]);
