@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,12 @@ namespace SampleStore.Models
 {
     public class ProductRepository : IProductRepository
     {
-        private StoreContext context = new StoreContext();
+        private IStoreContext context;
 
+        public ProductRepository(IStoreContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<Product> GetAll()
         {
@@ -50,12 +55,12 @@ namespace SampleStore.Models
                 throw new ArgumentNullException("item");
             }
 
-            var product = context.Products.Find(item.Id);
+            var product = context.Products.FirstOrDefault(p => p.Id == item.Id);
             if (product == null)
             {
                 return false;
             }
-            context.Entry(product).CurrentValues.SetValues(item);
+            context.SetValues(product, item);
             context.SaveChanges();
             return true;
         }

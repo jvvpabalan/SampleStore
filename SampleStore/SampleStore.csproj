@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IProductRepository.cs" />
+    <Compile Include="Models\IStoreContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Models\ProductRepository.cs" />

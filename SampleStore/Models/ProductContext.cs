@@ -6,11 +6,19 @@ using System.Data.Entity;
 
 namespace SampleStore.Models
 {
-    public class StoreContext : DbContext
+    public class StoreContext : DbContext, IStoreContext
     {
         public StoreContext() : base("name=StoreContext")
         {
         }
-        public DbSet<Product> Products { get; set; }
+        public IDbSet<Product> Products { get; set; }
+
+
+        public void SetValues(Product current, Product newVal)
+        {
+            Entry(current).CurrentValues.SetValues(newVal);
+        }
+
+        
     }
 }

@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Net.Http;
+using System.Data.Entity;
 using System.Web.Http.Hosting;
 
 namespace SampleStore.UnitTests
@@ -58,6 +59,33 @@ namespace SampleStore.UnitTests
             Assert.AreEqual(System.Net.HttpStatusCode.Created, result.StatusCode);
 
         }
+        [TestMethod]
+        public void Can_Edit_Product()
+        {
+            var data = new List<Product> {
+                new Product { Id= 1, Name="P1" }
+            }.AsQueryable();
+
+            var mock = new Mock<IDbSet<Product>>();
+            mock.Setup(m => m.Provider).Returns(data.Provider);
+            mock.Setup(m => m.Expression).Returns(data.Expression);
+            mock.Setup(m => m.ElementType).Returns(data.ElementType);
+            mock.Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var dbMock = new Mock<IStoreContext>();
+            dbMock.Setup(m => m.Products).Returns(mock.Object);
+
+            var repo = new ProductRepository(dbMock.Object);
+
+            var controller = new ProductsController(repo);
+
+
+            controller.PutProduct(new Product { Id = 1, Name = "P2" });
+
+            
+        }
+
+
 
         private Mock<IProductRepository> CreateMockObject()
         {

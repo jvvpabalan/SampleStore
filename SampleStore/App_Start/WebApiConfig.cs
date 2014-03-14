@@ -15,6 +15,7 @@ namespace SampleStore
         {
             // Web API configuration and services
             var kernel = new StandardKernel();
+            kernel.Bind<IStoreContext>().To<StoreContext>();
             kernel.Bind<IProductRepository>().To<ProductRepository>();
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectControllerFactory(kernel);
 
