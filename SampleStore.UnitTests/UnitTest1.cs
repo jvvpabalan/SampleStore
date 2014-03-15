@@ -62,26 +62,15 @@ namespace SampleStore.UnitTests
         [TestMethod]
         public void Can_Edit_Product()
         {
-            var data = new List<Product> {
-                new Product { Id= 1, Name="P1" }
-            }.AsQueryable();
-
-            var mock = new Mock<IDbSet<Product>>();
-            mock.Setup(m => m.Provider).Returns(data.Provider);
-            mock.Setup(m => m.Expression).Returns(data.Expression);
-            mock.Setup(m => m.ElementType).Returns(data.ElementType);
-            mock.Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var dbMock = new Mock<IStoreContext>();
-            dbMock.Setup(m => m.Products).Returns(mock.Object);
+            var dbMock = SetupMock();
 
             var repo = new ProductRepository(dbMock.Object);
-
+            
             var controller = new ProductsController(repo);
 
 
             controller.PutProduct(new Product { Id = 1, Name = "P2" });
-
+            controller.GetProduct(1);
             
         }
 
@@ -91,6 +80,24 @@ namespace SampleStore.UnitTests
         {
             return new Mock<IProductRepository>();
 
+        }
+
+        private Mock<IStoreContext> SetupMock()
+        {
+            var data = new List<Product> {
+                new Product { Id= 1, Name="P1" }
+            }.AsQueryable();
+
+            var mock = new Mock<IDbSet<Product>>();
+            mock.Setup(m => m.Provider).Returns(data.Provider);
+            mock.Setup(m => m.Expression).Returns(data.Expression);
+            mock.Setup(m => m.ElementType).Returns(data.ElementType);
+            mock.Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mock.Setup(m => m.Find(It.IsAny<Int32>())).Returns(data.FirstOrDefault(p => p.Id == 1));
+
+            var dbMock = new Mock<IStoreContext>();
+            dbMock.Setup(m => m.Products).Returns(mock.Object);
+            return dbMock;
         }
     }
 }
