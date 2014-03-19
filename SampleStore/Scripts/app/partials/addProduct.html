@@ -12,10 +12,12 @@
                     Name:
                 </label>
             </div>
-            <div >
+            <div class="col-xs-6 control-group" >
+               
                 <input type="text" required name="productName" ng-model="product.name" class="form-control" />
-
+                <span class="text-danger" ng-show="productForm.productName.$invalid && (submitted || productForm.productName.$dirty)">Required</span>
             </div>
+        
         </div>
         <div class="row form-group">
 
@@ -24,9 +26,9 @@
                     Category:
                 </label>
             </div>
-            <div>
+            <div class="col-xs-6 control-group">
                 <input type="text" name="category" ng-model="product.category" class="form-control" required />
-
+                <span class="text-danger" ng-show="productForm.category.$invalid && (submitted || productForm.category.$dirty)">Required</span>
             </div>
         </div>
         <div class="row form-group">
@@ -37,9 +39,9 @@
                 </label>
             </div>
 
-            <div>
+            <div class="col-xs-6 control-group">
                 <input type="number" name="price" ng-model="product.price" class="form-control" required />
-
+                <span class="text-danger" ng-show="productForm.price.$invalid && (submitted || productForm.price.$dirty)">Required</span>
             </div>
         </div>
 

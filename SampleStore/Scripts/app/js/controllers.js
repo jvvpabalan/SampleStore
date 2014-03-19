@@ -62,7 +62,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       }
 
       $scope.cancelEdit = function () {
-          $scope.productToRemove = null;
+          $scope.productToEdit = null;
       }
 
 
@@ -93,7 +93,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 .controller("AddProductCtrl", ["$scope", "$modalInstance", "Products", function ($scope, $modalInstance, Products) {
     $scope.save = function (product, form) {
         $scope.submitted = true;
-
+        console.log(form);
         if (form.$valid) {
             var newProd = Products.addProduct(product);
             $modalInstance.close(newProd);
