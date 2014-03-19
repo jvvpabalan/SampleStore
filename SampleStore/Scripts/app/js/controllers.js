@@ -5,29 +5,39 @@
 angular.module('myApp.controllers', ['ui.bootstrap']).
   controller('ProductsCtrl', ['$scope', "$modal", 'Products', function ($scope, $modal, Products) {
 
-
-
-
       $scope.productToEdit = null;
       $scope.editUrl = "/Scripts/app/partials/editProduct.html"
       Products.getProducts().then(function (products) {
           $scope.products = products;
       });;
 
-      $scope.pageSize = 3;
-      $scope.take = 3;
+
+      //initialize the number of items per page
+      var pageSize = 3;
+      $scope.pageSize = pageSize;
+      $scope.take = pageSize;
+
+      
       $scope.getPageCount = function () {
-          //make sure product is populated before using it
+          //make sure  $scope.product is populated before using it
           if ($scope.products != undefined) {
-              var pageCount = Math.ceil($scope.products.length / $scope.pageSize);
+              //divide the number of products to the number of items per page
+              var pageCount = Math.ceil($scope.products.length / $scope.pageSize);             
+              //initialize and return a new array with the value of pageCount
               return new Array(pageCount);
           }
 
       }
+
+      //Set the initial page and the number of items to skip
+      $scope.currentPage = 1;
       $scope.pageSkip = 0;
+
       $scope.goToPage = function (pageNum) {
-          
-          $scope.take = pageNum * 3;
+          //Change the currentPage value to the number chosen
+          $scope.currentPage = pageNum;
+          //
+          $scope.take = pageNum * pageSize;
           $scope.pageSkip = (pageNum * 3) - 3;
  
       }

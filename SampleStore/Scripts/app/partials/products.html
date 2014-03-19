@@ -21,6 +21,6 @@
 <div>
 
     <ul class="pagination">
-        <li ng-repeat="i in getPageCount() track by $index"><a href="" ng-click="goToPage($index+1)">{{$index+1}}</a></li>
+        <li ng-repeat="i in getPageCount() track by $index" ng-class="{'active': $index + 1 == currentPage }"><a href="" ng-click="goToPage($index+1)">{{$index+1}}</a></li>
     </ul>
 </div>
