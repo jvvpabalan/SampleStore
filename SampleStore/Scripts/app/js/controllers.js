@@ -21,7 +21,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       $scope.getPageCount = function () {
           //make sure  $scope.product is populated before using it
           if ($scope.products != undefined) {
-              //divide the number of products to the number of items per page
+              //get the number of pages 
               var pageCount = Math.ceil($scope.products.length / $scope.pageSize);             
               //initialize and return a new array with the value of pageCount
               return new Array(pageCount);
@@ -36,9 +36,10 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
       $scope.goToPage = function (pageNum) {
           //Change the currentPage value to the number chosen
           $scope.currentPage = pageNum;
-          //
+          //get the number of products to show
           $scope.take = pageNum * pageSize;
-          $scope.pageSkip = (pageNum * 3) - 3;
+          //get the number of items to skip
+          $scope.pageSkip = (pageNum * pageSize) - pageSize;
  
       }
 
